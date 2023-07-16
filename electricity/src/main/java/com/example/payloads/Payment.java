@@ -14,12 +14,14 @@ public class Payment {
     public static double determinePerUnitRate(double totalConsumption, String tariff) {
         // Define consumption tiers and their corresponding rates
         double[] consumptionTiers = {100, 200, 300};
+        
         double[] ratesHousehold = {0.8, 1.0, 1.2, 1.5}; // Example rates per unit
         double[] ratesIndustrial = {1.2, 1.5, 1.8, 2.1}; // Example rates per unit
         double[] ratesPublic = {1.5, 1.8, 2.1, 2.4}; // Example rates per unit
 
         // Find the applicable rate based on the consumption tier
         int tier = 0;
+        
         while (tier < consumptionTiers.length && totalConsumption > consumptionTiers[tier]) {
             tier++;
         }

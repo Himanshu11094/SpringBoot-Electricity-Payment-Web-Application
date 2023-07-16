@@ -39,7 +39,7 @@ public class Property {
   @JsonIgnore
   Consumer consumer;
 
-  @OneToMany(mappedBy = "property", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "property", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   private List<Bill> bills;
   // Constructor, getters, and setters
 

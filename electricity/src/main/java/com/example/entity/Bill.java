@@ -15,6 +15,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Getter
@@ -22,7 +23,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Bill {
-  @Id
+ 
+
+
+
+@Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
@@ -46,7 +51,11 @@ public class Bill {
 
   // Getters and Setters
 
-
+  @Override
+ 	public String toString() {
+ 		return "Bill [id=" + id + ", amount=" + amount + ", dueDate=" + dueDate + ", billingDate=" + billingDate
+ 				+ ", isPaid=" + isPaid + ", unitsConsumed=" + unitsConsumed + "]";
+ 	}
   
   
 }

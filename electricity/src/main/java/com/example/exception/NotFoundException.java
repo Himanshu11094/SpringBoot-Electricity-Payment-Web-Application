@@ -9,14 +9,20 @@ public class NotFoundException extends RuntimeException {
 	String resourceName;
 	String fieldName;
 	Long fieldValue;
+	String fieldValueVariable;
   
 	public NotFoundException(String resourceName, String fieldName, Long fieldValue) {
     
 	  super(String.format("%s not found with %s: %s",fieldName,  fieldName, fieldValue));
+	  
+	  //super(message);
 	  
 	  this.resourceName = resourceName;
 	  this.fieldName = fieldName;
 	  this.fieldValue = fieldValue;
 
   }
-}
+	
+
+  }
+

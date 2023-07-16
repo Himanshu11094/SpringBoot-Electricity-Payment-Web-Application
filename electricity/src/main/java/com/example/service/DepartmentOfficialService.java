@@ -1,10 +1,13 @@
 package com.example.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.dto.ConsumerDTO;
 import com.example.entity.Consumer;
+import com.example.exception.ConsumerNotFoundException;
 import com.example.repository.ConsumerRepository;
 
 @Service
@@ -27,5 +30,16 @@ public class DepartmentOfficialService {
      
     // Set other properties as needed
     consumerRepository.save(consumer);
+  }
+  
+  
+  public List<Consumer> allConsumers() throws ConsumerNotFoundException
+  {
+	  List<Consumer> consumers = consumerRepository.findAll();
+	  
+	  if(consumers==null || consumers.size()==0)
+		  throw new  ConsumerNotFoundException("Consumers", "Consumers", "CONSUMERS");
+	  
+	  return consumers;
   }
 }

@@ -16,6 +16,8 @@ import com.example.repository.BillRepository;
 import com.example.repository.ConsumerRepository;
 import com.example.repository.PropertyRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class ConsumerService {
 	
@@ -64,6 +66,7 @@ public class ConsumerService {
     return billDTO;
   }
 
+  @Transactional
 public List<Property> getPropertiesByConsumerId(Long consumerId) {
 	// TODO Auto-generated method stub
 	
@@ -73,11 +76,24 @@ public List<Property> getPropertiesByConsumerId(Long consumerId) {
 	
 	//List<Property> properties = propertyRepository.findByConsumer(consumer);
 //	
-	return propertyRepository.findPropertiesByConsumerId(consumerId);
+	List<Property> properties = new ArrayList<>();
+
+		properties =  propertyRepository.findPropertiesByConsumerId(consumerId);
+		
+		 
 	
-	 
+	
+	if(properties.size()==0 || properties==null)
+	{
+		throw new NotFoundException("Consumer", "Consumer ID", consumerId);
+	}
+	
+	return properties;
+ 
     
 }
+  
+  
 
 public void addUserProperty(Long consumerId, PropertyDTO propertyDTO) {
 	
